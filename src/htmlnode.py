@@ -9,7 +9,9 @@ class HTMLNode:
         raise NotImplementedError()
 
     def props_to_html(self):
-        return ' '.join(map(lambda key: f'{key}="{self.props[key]}"', self.props))
+        if self.props == None:
+            return ''
+        return ' ' + ' '.join(map(lambda key: f'{key}="{self.props[key]}"', self.props))
 
     def __repr__(self):
         active_attrs = [];
@@ -21,7 +23,7 @@ class HTMLNode:
         if self.children:
             active_attrs.append(f"children: {self.children}")
         if self.props:
-            active_attrs.append(f"props: {self.props_to_html()}")
+            active_attrs.append(f"props: {self.props}")
 
         return f"HTMLNode({', '.join(active_attrs)})"
 

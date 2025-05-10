@@ -3,16 +3,53 @@ import unittest
 from htmlnode import HTMLNode
 
 class TestHTMLNode(unittest.TestCase):
-    def test_repr_hello_world(self):
-        node = HTMLNode("h1", "Hello World", None, {"class": "heading"})
+    def test_to_html_props(self):
+        node = HTMLNode(
+            "div",
+            "Hello, world!",
+            None,
+            {"class": "greeting", "href": "https://boot.dev"},
+        )
         self.assertEqual(
-            'HTMLNode(tag: h1, value: Hello World, props: class="heading")', repr(node)
+            node.props_to_html(),
+            ' class="greeting" href="https://boot.dev"',
         )
 
-    def test_props_to_html(self):
-        node = HTMLNode("a", "Example link", None, {"href": "http://example.com", "target": "_blank"})
-        self.assertEqual('href="http://example.com" target="_blank"', node.props_to_html())
+    def test_values(self):
+        node = HTMLNode(
+            "div",
+            "I wish I could read",
+        )
+        self.assertEqual(
+            node.tag,
+            "div",
+        )
+        self.assertEqual(
+            node.value,
+            "I wish I could read",
+        )
+        self.assertEqual(
+            node.children,
+            None,
+        )
+        self.assertEqual(
+            node.props,
+            None,
+        )
+
+    def test_repr(self):
+        node = HTMLNode(
+            "p",
+            "What a strange world",
+            None,
+            {"class": "primary"},
+        )
+        self.assertEqual(
+            node.__repr__(),
+            "HTMLNode(tag: p, value: What a strange world, props: {'class': 'primary'})",
+        )
+
 
 if __name__ == "__main__":
-    unitest.main()
+    unittest.main()
 
