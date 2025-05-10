@@ -24,9 +24,6 @@ class TestTextNode(unittest.TestCase):
             "TextNode(This is a text node, TEXT, https://www.boot.dev)", repr(node)
         )
 
-        
-
-
 if __name__ == "__main__":
     unitest.main()
 
