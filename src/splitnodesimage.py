@@ -5,8 +5,11 @@ def split_nodes_image(old_nodes):
     new_nodes = []
     for node in old_nodes:
         matches = extract_markdown_images(node.text)
-        nodes = split_node(node.text, matches)
-        new_nodes.extend(nodes)
+        if node.text_type == TextType.TEXT:
+            nodes = split_node(node.text, matches)
+            new_nodes.extend(nodes)
+        else: 
+            new_nodes.append(node)
     return new_nodes
 
 def split_node(str, matches, i = 0):

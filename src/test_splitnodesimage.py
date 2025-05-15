@@ -46,6 +46,18 @@ class TestSplitNodesLink(unittest.TestCase):
             TextNode("This is text with no links", TextType.TEXT),
         ])
 
+    def test_italic_passthrough(self):
+        text_node1 = TextNode("This text has an ", TextType.TEXT)
+        italic_node = TextNode("italic", TextType.ITALIC)
+        text_node2 = TextNode(" word and a ![image](http://placecage.com/666/666)", TextType.TEXT)
+        result = split_nodes_image([text_node1, italic_node, text_node2])
+        self.assertEqual(len(result), 4)
+        self.assertListEqual(result, [
+            text_node1,
+            italic_node,
+            TextNode(" word and a ", TextType.TEXT),
+            TextNode("image", TextType.IMAGE, "http://placecage.com/666/666")
+        ])
 if __name__ == "__main__":
     unitest.main()
 
