@@ -4,7 +4,7 @@ from blocktype import BlockType
 def block_to_block_type(block):
     if re.search("^#{1,6} ", block):
         return BlockType.HEADING
-    if re.search("^```\\n.*\\n```$", block):
+    if re.search("^```\n.*\n```$", block, re.DOTALL):
         return BlockType.CODE
     if re.search("^>", block):
         return BlockType.QUOTE

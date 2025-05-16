@@ -48,9 +48,6 @@ way
 
 too many new lines
 
-
-
-
 """
         result = markdown_to_blocks(md)
         self.assertEqual(result, ["This test has", "way", "too many new lines"])
