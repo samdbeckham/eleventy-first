@@ -1,8 +1,8 @@
 from textnode import TextNode
+from copy_files import copy_files
 
 def main():
-    textNode = TextNode("test text", "BOLD", "https://google.com")
-    print(textNode)
+    copy_files("static", "public")
 
 main()
 
