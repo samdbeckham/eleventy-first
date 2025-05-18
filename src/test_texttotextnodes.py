@@ -50,6 +50,14 @@ class TestTextToTextNodes(unittest.TestCase):
             TextNode(" in it", TextType.TEXT),
         ])
 
+    def test_starting_link(self):
+        result = text_to_textnodes("[A link](#) right at the start")
+        self.assertEqual(len(result), 2)
+        self.assertListEqual(result, [
+            TextNode("A link", TextType.LINK, "#"),
+            TextNode(" right at the start", TextType.TEXT)
+        ])
+
     def test_all(self):
         result = text_to_textnodes("This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)")
         self.assertEqual(len(result), 10)

@@ -38,6 +38,16 @@ class TestSplitNodesLink(unittest.TestCase):
             TextNode("to youtube", TextType.LINK, "https://www.youtube.com/@bootdotdev")
         ])
 
+    def test_starting_link(self):
+        text = "[A link](#) right at the start"
+        node = TextNode(text, TextType.TEXT)
+        result = split_nodes_link([node])
+        self.assertEqual(len(result), 2)
+        self.assertListEqual(result, [
+            TextNode("A link", TextType.LINK, "#"),
+            TextNode(" right at the start", TextType.TEXT)
+        ])
+
     def test_no_links(self):
         text = "This is text with no links"
         node = TextNode(text, TextType.TEXT)

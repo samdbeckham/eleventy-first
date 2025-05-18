@@ -8,6 +8,11 @@ class TestExtractMarkdownLinks(unittest.TestCase):
         result = extract_markdown_links(text)
         self.assertEqual(result, [("to boot dev", "https://www.boot.dev"), ("to youtube", "https://www.youtube.com/@bootdotdev")])
 
+    def test_starting_link(self):
+        text = "[A link](#) right at the start"
+        result = extract_markdown_links(text)
+        self.assertEqual(result, [("A link", "#")])
+
     def test_images(self):
         text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
         result = extract_markdown_links(text)

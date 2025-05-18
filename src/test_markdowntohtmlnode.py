@@ -81,6 +81,16 @@ the **same** even with inline stuff
         result = node.to_html()
         self.assertEqual(result, '<div><ol><li>list</li><li>of items</li><li>with <b>bold</b> text</li><li>and <a href="http://example.com">links</a></li></ol></div>')
 
+    def test_linked_list(self):
+        markdown = """
+- [link](https://example.com)
+- [lonk](/blog/test.html)
+- [bonk](#)
+"""
+        node = markdown_to_html_node(markdown)
+        result = node.to_html()
+        self.assertEqual(result, '<div><ul><li><a href="https://example.com">link</a></li><li><a href="/blog/test.html">lonk</a></li><li><a href="#">bonk</a></li></ul></div>')
+
 if __name__ == "__main__":
     unitest.main()
 
