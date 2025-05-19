@@ -1,1 +1,1 @@
-python3 src/main.py "/eleventy-eleven/"
+python3 src/main.py "/eleventy-first/"
