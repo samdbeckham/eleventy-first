@@ -28,7 +28,7 @@ def markdown_to_html_node(markdown):
                 code_block = LeafNode('code', block.removeprefix("```").removesuffix("```").strip())
                 nodes.append(ParentNode('pre', [code_block]))
             case BlockType.QUOTE:
-                text = block.removeprefix("> ")
+                text = block.removeprefix("> ").replace("\n>", "")
                 text_nodes = text_to_children(text)
                 nodes.append(ParentNode("blockquote", text_nodes))
             case BlockType.UNORDERED_LIST:

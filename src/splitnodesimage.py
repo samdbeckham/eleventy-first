@@ -1,6 +1,7 @@
 from textnode import TextNode
 from texttype import TextType
 from extractmarkdownimages import extract_markdown_images
+from stripemptynodes import strip_empty_nodes
 
 def split_nodes_image(old_nodes):
     new_nodes = []
@@ -11,7 +12,7 @@ def split_nodes_image(old_nodes):
             new_nodes.extend(nodes)
         else: 
             new_nodes.append(node)
-    return new_nodes
+    return strip_empty_nodes(new_nodes)
 
 def split_node(str, matches, i = 0):
     if len(matches) < i + 1:
